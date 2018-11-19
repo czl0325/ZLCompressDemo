@@ -25,7 +25,7 @@ file->new->new module，新建一个module，取名叫ZLCompress
 
 ### 4.在ZLCompress库中添加ZLCompress.java类
 
-![](https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo4.png?raw=true)
+<img src="https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo4.png?raw=true" width="280"/>
 
 ### 5.导入so库
 
@@ -41,7 +41,7 @@ file->new->new module，新建一个module，取名叫ZLCompress
 
 新建一个cpp文件夹，把jpeg相关的头文件导入，如图
 
-![](https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo8.png?raw=true)
+<img src="https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo8.png?raw=true" width="280"/>
 
 cd到src/main/java的文件夹下，使用javah命令生成头文件
 
@@ -50,14 +50,14 @@ javah -classpath . -jni com.github.zlcompress.ZLCompress
 ```
 
 生成后如图：
-![](https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo9.png?raw=true)
+<img src="https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo9.png?raw=true" width="320"/>
 并且新建一个native-compress.cpp文件
 
 ### 7.CMakeLists文件编写
 
 在与src同级的目录下创建一个CMakeLists.txt文件
 
-![]("https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo7.png?raw=true" width="280")
+![]("https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo7.png?raw=true" width="320")
 
 ```JAVA
 cmake_minimum_required(VERSION 3.4.1)
