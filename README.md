@@ -13,7 +13,7 @@
 
 file->new->new module，新建一个module，取名叫ZLCompress
 
-<img src="https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo2.png?raw=true" width="320"/>
+<img src="https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo2.png?raw=true" width="420"/>
 
 点击完成.
 
@@ -21,7 +21,7 @@ file->new->new module，新建一个module，取名叫ZLCompress
 
 把ZLCompress依赖添加到工程
 
-<img src="https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo3.png?raw=true" width="320"/>
+<img src="https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo3.png?raw=true" width="420"/>
 
 ### 4.在ZLCompress库中添加ZLCompress.java类
 
@@ -37,7 +37,7 @@ file->new->new module，新建一个module，取名叫ZLCompress
 
 在ZLCompress.java文件中添加so库的导入，并编写一个native方法。
 
-<img src="https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo6.png?raw=true" width="375"/>
+<img src="https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo6.png?raw=true" width="420"/>
 
 
 ### 7.CMakeLists文件编写
@@ -84,4 +84,9 @@ target_link_libraries(  native-compress
 
 * 这边值得注意的是：
 
-* 
+* 出现错误
+```
+Error:error: '../../../../src/main/jniLibs/mips64/...', needed by '../../../../build/intermediates/cmake/debug/obj/mips64/...', missing and no known rule to make it
+
+```
+
