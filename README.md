@@ -50,7 +50,9 @@ javah -classpath . -jni com.github.zlcompress.ZLCompress
 ```
 
 生成后如图：
+
 <img src="https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo9.png?raw=true" width="320"/>
+
 并且新建一个native-compress.cpp文件
 
 ### 7.CMakeLists文件编写
