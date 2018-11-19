@@ -49,6 +49,10 @@ cd到src/main/java的文件夹下，使用javah命令生成头文件
 javah -classpath . -jni com.github.zlcompress.ZLCompress
 ```
 
+生成后如图：
+![]("https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo9.png?raw=true")
+并且新建一个native-compress.cpp文件
+
 ### 7.CMakeLists文件编写
 
 在与src同级的目录下创建一个CMakeLists.txt文件
@@ -100,3 +104,66 @@ Error:error: '../../../../src/main/jniLibs/mips64/...', needed by '../../../../b
 ```
 这既有可能是你CMakeLists里面的set_target_properties路径配置错误了，相对路径计算很麻烦，一不小心就错了，配置成绝对路径就安全了很多。<br>
 比如我改成了${CMAKE_SOURCE_DIR}/libs/${ANDROID_ABI}/libjpegbither.so，编译通过。
+
+### 8.配置gradle
+
+在module的build.gradle下添加配置
+
+```JAVA
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        externalNativeBuild {
+            cmake {
+                cppFlags " -frtti -fexceptions -std=c++11  "
+                abiFilters 'armeabi-v7a'
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets.main {
+        jniLibs.srcDirs = ['libs']
+        jni.srcDirs = []
+    }
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
+    }
+    /**
+     * Failure [INSTALL_FAILED_NO_MATCHING_ABIS: Failed to extract native libraries, res=-113]
+     * Error while Installing APK
+     */
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'armeabi-v7a'
+            universalApk true
+        }
+    }
+}
+```
+
+### 9. 编写native-compress.cpp的代码
+
+这里就不写了，具体看demo
+
+### 10. 运行
+
+* 如果出现AndroidBitmap_lockPixels函数找不到的话，注意CMakeLists文件要添加jnigraphics的依赖
+* 模拟器无法运行，这是因为我们只有armeabi-v7a的库，模拟器不是armeabi-v7a结构的，所以不能运行，真机可以
