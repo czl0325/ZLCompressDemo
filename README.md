@@ -7,13 +7,13 @@
 
 创建一个非ndk的工程，取名叫ZLCompressDemo
 
-<img src="https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo1.png?raw=true" width="375"/>
+![]("https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo1.png?raw=true")
 
 ### 2.添加ndk的module
 
 file->new->new module，新建一个module，取名叫ZLCompress
 
-<img src="https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo2.png?raw=true" width="420"/>
+![]("https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo2.png?raw=true")
 
 点击完成.
 
@@ -21,11 +21,11 @@ file->new->new module，新建一个module，取名叫ZLCompress
 
 把ZLCompress依赖添加到工程
 
-<img src="https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo3.png?raw=true" width="420"/>
+![]("https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo3.png?raw=true")
 
 ### 4.在ZLCompress库中添加ZLCompress.java类
 
-<img src="https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo4.png?raw=true" width="280"/>
+![]("https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo4.png?raw=true")
 
 ### 5.导入so库
 
@@ -37,14 +37,23 @@ file->new->new module，新建一个module，取名叫ZLCompress
 
 在ZLCompress.java文件中添加so库的导入，并编写一个native方法。
 
-<img src="https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo6.png?raw=true" width="420"/>
+![]("https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo6.png?raw=true")
 
+新建一个cpp文件夹，把jpeg相关的头文件导入，如图
+
+![]("https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo8.png?raw=true")
+
+cd到src/main/java的文件夹下，使用javah命令生成头文件
+
+```JAVA
+javah -classpath . -jni com.github.zlcompress.ZLCompress
+```
 
 ### 7.CMakeLists文件编写
 
 在与src同级的目录下创建一个CMakeLists.txt文件
 
-<img src="https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo7.png?raw=true" width="280"/>
+![]("https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo7.png?raw=true" width="280")
 
 ```JAVA
 cmake_minimum_required(VERSION 3.4.1)
@@ -89,4 +98,5 @@ target_link_libraries(  native-compress
 Error:error: '../../../../src/main/jniLibs/mips64/...', needed by '../../../../build/intermediates/cmake/debug/obj/mips64/...', missing and no known rule to make it
 
 ```
-
+这既有可能是你CMakeLists里面的set_target_properties路径配置错误了，相对路径计算很麻烦，一不小心就错了，配置成绝对路径就安全了很多。<br>
+比如我改成了${CMAKE_SOURCE_DIR}/libs/${ANDROID_ABI}/libjpegbither.so，编译通过。
