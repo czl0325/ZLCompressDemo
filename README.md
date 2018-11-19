@@ -7,13 +7,13 @@
 
 创建一个非ndk的工程，取名叫ZLCompressDemo
 
-![]("https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo1.png?raw=true")
+![](https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo1.png?raw=true)
 
 ### 2.添加ndk的module
 
 file->new->new module，新建一个module，取名叫ZLCompress
 
-![]("https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo2.png?raw=true")
+![](https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo2.png?raw=true)
 
 点击完成.
 
@@ -21,11 +21,11 @@ file->new->new module，新建一个module，取名叫ZLCompress
 
 把ZLCompress依赖添加到工程
 
-![]("https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo3.png?raw=true")
+![](https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo3.png?raw=true)
 
 ### 4.在ZLCompress库中添加ZLCompress.java类
 
-![]("https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo4.png?raw=true")
+![](https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo4.png?raw=true)
 
 ### 5.导入so库
 
@@ -37,11 +37,11 @@ file->new->new module，新建一个module，取名叫ZLCompress
 
 在ZLCompress.java文件中添加so库的导入，并编写一个native方法。
 
-![]("https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo6.png?raw=true")
+![](https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo6.png?raw=true)
 
 新建一个cpp文件夹，把jpeg相关的头文件导入，如图
 
-![]("https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo8.png?raw=true")
+![](https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo8.png?raw=true)
 
 cd到src/main/java的文件夹下，使用javah命令生成头文件
 
@@ -50,7 +50,7 @@ javah -classpath . -jni com.github.zlcompress.ZLCompress
 ```
 
 生成后如图：
-![]("https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo9.png?raw=true")
+![](https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo9.png?raw=true)
 并且新建一个native-compress.cpp文件
 
 ### 7.CMakeLists文件编写
