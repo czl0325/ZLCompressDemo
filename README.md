@@ -61,7 +61,7 @@ javah -classpath . -jni com.github.zlcompress.ZLCompress
 
 ![](https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo7.png?raw=true)
 
-```JAVA
+```CMake
 cmake_minimum_required(VERSION 3.4.1)
 
 # 把系统的log库导入进来
