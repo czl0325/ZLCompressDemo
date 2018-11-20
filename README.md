@@ -7,13 +7,13 @@
 
 创建一个非ndk的工程，取名叫ZLCompressDemo
 
-![]("https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo1.png?raw=true")
+![](https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo1.png?raw=true)
 
 ### 2.添加ndk的module
 
 file->new->new module，新建一个module，取名叫ZLCompress
 
-![]("https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo2.png?raw=true")
+![](https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo2.png?raw=true)
 
 点击完成.
 
@@ -21,11 +21,11 @@ file->new->new module，新建一个module，取名叫ZLCompress
 
 把ZLCompress依赖添加到工程
 
-![]("https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo3.png?raw=true")
+![](https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo3.png?raw=true)
 
 ### 4.在ZLCompress库中添加ZLCompress.java类
 
-![]("https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo4.png?raw=true")
+<img src="https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo4.png?raw=true" width="280"/>
 
 ### 5.导入so库
 
@@ -37,11 +37,11 @@ file->new->new module，新建一个module，取名叫ZLCompress
 
 在ZLCompress.java文件中添加so库的导入，并编写一个native方法。
 
-![]("https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo6.png?raw=true")
+![](https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo6.png?raw=true)
 
 新建一个cpp文件夹，把jpeg相关的头文件导入，如图
 
-![]("https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo8.png?raw=true")
+<img src="https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo8.png?raw=true" width="280"/>
 
 cd到src/main/java的文件夹下，使用javah命令生成头文件
 
@@ -50,14 +50,16 @@ javah -classpath . -jni com.github.zlcompress.ZLCompress
 ```
 
 生成后如图：
-![]("https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo9.png?raw=true")
+
+<img src="https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo9.png?raw=true" width="320"/>
+
 并且新建一个native-compress.cpp文件
 
 ### 7.CMakeLists文件编写
 
 在与src同级的目录下创建一个CMakeLists.txt文件
 
-![]("https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo7.png?raw=true" width="280")
+![](https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo7.png?raw=true)
 
 ```JAVA
 cmake_minimum_required(VERSION 3.4.1)
@@ -167,3 +169,8 @@ android {
 
 * 如果出现AndroidBitmap_lockPixels函数找不到的话，注意CMakeLists文件要添加jnigraphics的依赖
 * 模拟器无法运行，这是因为我们只有armeabi-v7a的库，模拟器不是armeabi-v7a结构的，所以不能运行，真机可以
+* 错误
+```JAVA
+java.lang.UnsatisfiedLinkError: No implementation found for int com.github.zlcompress.ZLCompress.compressBitmap(java.lang.Object, int, int, int, byte[], boolean) (tried Java_com_github_zlcompress_ZLCompress_compressBitmap and Java_com_github_zlcompress_ZLCompress_compressBitmap__Ljava_lang_Object_2III_3BZ)
+```
+
