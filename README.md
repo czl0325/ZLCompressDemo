@@ -174,3 +174,5 @@ android {
 java.lang.UnsatisfiedLinkError: No implementation found for int com.github.zlcompress.ZLCompress.compressBitmap(java.lang.Object, int, int, int, byte[], boolean) (tried Java_com_github_zlcompress_ZLCompress_compressBitmap and Java_com_github_zlcompress_ZLCompress_compressBitmap__Ljava_lang_Object_2III_3BZ)
 ```
 
+这是我自己没注意，没把自己写的cpp文件导入。
+![](https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo10.png?raw=true)
