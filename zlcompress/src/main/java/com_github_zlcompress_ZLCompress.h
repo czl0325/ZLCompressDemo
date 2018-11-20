@@ -10,10 +10,11 @@ extern "C" {
 /*
  * Class:     com_github_zlcompress_ZLCompress
  * Method:    compressBitmap
- * Signature: (Ljava/lang/Object;III[BZ)V
+ * Signature: (Ljava/lang/Object;III[BZ)I
  */
+//Java_com_github_zlcompress_ZLCompress_compressBitmap
 JNIEXPORT jint JNICALL Java_com_github_zlcompress_ZLCompress_compressBitmap
-  (JNIEnv *, jobject, jobject, jint, jint, jint, jbyteArray, jboolean);
+  (JNIEnv *, jclass, jobject, jint, jint, jint, jbyteArray, jboolean);
 
 #ifdef __cplusplus
 }

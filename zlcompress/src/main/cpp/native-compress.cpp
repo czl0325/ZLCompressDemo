@@ -1,7 +1,7 @@
 //
 // Created by zhaoliang chen on 2018/11/19.
 //
-#include "com_github_zlcompress_ZLCompress.h"
+#include "../../java/com_github_zlcompress_ZLCompress.h"
 #include <string.h>
 #include <android/bitmap.h>
 #include <android/log.h>
@@ -125,7 +125,7 @@ char* jstrinTostring(JNIEnv* env, jbyteArray barr) {
 }
 
 JNIEXPORT jint JNICALL Java_com_github_zlcompress_ZLCompress_compressBitmap
-        (JNIEnv *env, jobject jobj, jobject bitmap, jint width,
+        (JNIEnv *env, jclass jclz, jobject bitmap, jint width,
          jint height, jint quality, jbyteArray fileName, jboolean optimize) {
     BYTE *pixelscolor;
     //1.将bitmap里面的所有像素信息读取出来,并转换成RGB数据,保存到二维byte数组里面
