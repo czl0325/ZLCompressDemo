@@ -169,3 +169,8 @@ android {
 
 * 如果出现AndroidBitmap_lockPixels函数找不到的话，注意CMakeLists文件要添加jnigraphics的依赖
 * 模拟器无法运行，这是因为我们只有armeabi-v7a的库，模拟器不是armeabi-v7a结构的，所以不能运行，真机可以
+* 错误
+```JAVA
+java.lang.UnsatisfiedLinkError: No implementation found for int com.github.zlcompress.ZLCompress.compressBitmap(java.lang.Object, int, int, int, byte[], boolean) (tried Java_com_github_zlcompress_ZLCompress_compressBitmap and Java_com_github_zlcompress_ZLCompress_compressBitmap__Ljava_lang_Object_2III_3BZ)
+```
+
