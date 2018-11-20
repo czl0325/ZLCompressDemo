@@ -59,7 +59,7 @@ javah -classpath . -jni com.github.zlcompress.ZLCompress
 
 在与src同级的目录下创建一个CMakeLists.txt文件
 
-![]("https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo7.png?raw=true" width="320")
+![](https://github.com/czl0325/ZLCompressDemo/blob/master/screenspot/demo7.png?raw=true)
 
 ```JAVA
 cmake_minimum_required(VERSION 3.4.1)
