@@ -30,7 +30,7 @@ android {
     }
     sourceSets.main {
         jniLibs.srcDirs = ['libs']
-        jni.srcDirs = []
+        //jni.srcDirs = []
     }
     externalNativeBuild {
         cmake {

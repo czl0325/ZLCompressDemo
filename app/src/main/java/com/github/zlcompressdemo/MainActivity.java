@@ -22,7 +22,9 @@ import android.widget.ImageView;
 import com.github.zlcompress.ZLCompress;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.xml.transform.Result;
 
@@ -64,22 +66,18 @@ public class MainActivity extends AppCompatActivity {
                                 File inFile = new File(path);
                                 Log.e("czl","文件初始大小="+inFile.length());
                             }
-                            Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver()
-                                    .openInputStream(imageUri));
-                            picture.setImageBitmap(bitmap);
+                            //Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
+                            //picture.setImageBitmap(bitmap);
                             int result = ContextCompat.checkSelfPermission(MainActivity.this,
                                     Manifest.permission.READ_EXTERNAL_STORAGE);
                             if (result != PackageManager.PERMISSION_GRANTED) {
                                 ActivityCompat.requestPermissions(MainActivity.this,
                                         new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_PICK_IMAGE);
                             } else {
-                                String outPath = Environment.getExternalStorageDirectory()+"/1.jpg";
-                                File outFile = new File(outPath);
-                                ZLCompress.huffmanCompress(bitmap, outFile);
-                                Log.e("czl","文件压缩后大小="+outFile.length());
+                                compress();
                             }
                         }
-                    } catch (FileNotFoundException e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
@@ -90,18 +88,30 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void compress() {
+        File outFile = new File(getExternalCacheDir(),"hafuman.jpg");
+        Log.e("czl","文件位置："+outFile.getAbsolutePath());
+        if (outFile.exists()) {
+            outFile.delete();
+        }
+        try {
+            outFile.createNewFile();
+            Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
+            ZLCompress.huffmanCompress(bitmap, outFile);
+            FileInputStream fis = new FileInputStream(outFile);
+            picture.setImageBitmap(BitmapFactory.decodeStream(fis)); //设置Bitmap
+            Log.e("czl","文件压缩后大小="+outFile.length());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_PICK_IMAGE) {
             if (grantResults.length > 0) {
-                String outPath = Environment.getExternalStorageDirectory()+"/1.jpg";
-                File outFile = new File(outPath);
-                picture.setDrawingCacheEnabled(true);
-                Bitmap bitmap = Bitmap.createBitmap(picture.getDrawingCache());
-                picture.setDrawingCacheEnabled(false);
-                ZLCompress.huffmanCompress(bitmap, outFile);
-                Log.e("czl","文件压缩后大小="+outFile.length());
+                compress();
             }
         }
     }

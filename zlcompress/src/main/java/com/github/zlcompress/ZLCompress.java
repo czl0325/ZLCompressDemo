@@ -15,12 +15,13 @@ public class ZLCompress {
     static {
         System.loadLibrary("jpegbither");
         System.loadLibrary("bitherjni");
+        System.loadLibrary("native-compress");
     }
 
     public static native int compressBitmap(Bitmap bit, int w, int h, int quality, byte[] fileNameBytes, boolean optimize);
 
     public static void huffmanCompress(Bitmap bitmap, File file) {
-        compressBitmap(bitmap, bitmap.getWidth(), bitmap.getHeight(), 100,
+        compressBitmap(bitmap, bitmap.getWidth(), bitmap.getHeight(), 50,
                 file.getAbsolutePath().getBytes(), true);
     }
 

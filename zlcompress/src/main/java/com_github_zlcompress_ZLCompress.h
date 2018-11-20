@@ -4,6 +4,8 @@
 
 #ifndef _Included_com_github_zlcompress_ZLCompress
 #define _Included_com_github_zlcompress_ZLCompress
+
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -13,8 +15,8 @@ extern "C" {
  * Signature: (Ljava/lang/Object;III[BZ)I
  */
 //Java_com_github_zlcompress_ZLCompress_compressBitmap
-JNIEXPORT jint JNICALL Java_com_github_zlcompress_ZLCompress_compressBitmap
-  (JNIEnv *, jclass, jobject, jint, jint, jint, jbyteArray, jboolean);
+JNIEXPORT jint JNICALL
+Java_com_github_zlcompress_ZLCompress_compressBitmap(JNIEnv *, jclass, jobject, jint, jint, jint, jbyteArray, jboolean);
 
 #ifdef __cplusplus
 }
